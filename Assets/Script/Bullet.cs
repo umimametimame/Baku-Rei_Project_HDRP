@@ -10,6 +10,7 @@ public class Bullet : Chara
     protected override void Start()
     {
         base.Start();
+        assignSpeed = speed.entity;
         bulletLocus.Initialize();
         lifeTime.activeAction += () => StateChange(CharaState.Death);   // 生存時間限界時に破壊される
         aliveAction += AliveAction;
@@ -27,12 +28,12 @@ public class Bullet : Chara
     /// </summary>
     public void AliveAction()
     {
-        assignSpeed = speed.entity;
 
         if(lifeTime.interval > 0) { lifeTime.Update(); }
         
         SolutionChangeRot();
         SolutionAddPos();
+        
 
         bulletLocus.Update();
     }
@@ -63,7 +64,8 @@ public class Bullet : Chara
 
         newVelo.y = bulletLocus.posEva.y;       // Y軸のイージングを付与
         newVelo = transform.rotation * newVelo; // 向いている方向に進む
-        moveVelocity.plan = newVelo;
+
+        AddAssignedMoveVelocity(newVelo);
     }
 
 }

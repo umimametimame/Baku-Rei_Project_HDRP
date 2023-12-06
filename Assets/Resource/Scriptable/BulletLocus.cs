@@ -1,4 +1,5 @@
 using AddClass;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,4 +44,40 @@ public class BulletLocus : ScriptableObject
                 break;
         }
     }
+}
+
+[Serializable] public class BulletLocusOperator
+{
+    [field: SerializeField] private BulletLocus bulletLocus;
+    [field: SerializeField, NonEditable] public Vector3 posEva { get; private set; }
+    [field: SerializeField, NonEditable] public Vector3 rotEva { get; private set; }
+    [field: SerializeField, NonEditable] public VariedTime currentTime { get; private set; }
+
+    public void Initialize()
+    {
+        Reset();
+    }
+
+    public void Reset()
+    {
+        currentTime.Initialize();
+
+        posEva = bulletLocus.addPos.Eva(currentTime.value);
+        rotEva = bulletLocus.addRot.Eva(currentTime.value);
+
+    }
+
+
+    /// <summary>
+    /// timeÇÃëùâ¡<br/>
+    /// EvaluteÇë„ì¸å„Ç…åƒÇ—èoÇ∑
+    /// </summary>
+    public void Update()
+    {
+        posEva = bulletLocus.addPos.Eva(currentTime.value);
+        rotEva = bulletLocus.addRot.Eva(currentTime.value);
+
+        currentTime.Update();
+    }
+
 }

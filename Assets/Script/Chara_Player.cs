@@ -5,30 +5,27 @@ using AddClass;
 using GenericChara;
 using UnityEngine.InputSystem;
 
-public class Chara_Player : Chara
+public class Chara_Player : Chara_Bakurei
 {
-    [SerializeField] private PosRange posRange = new PosRange();
     [SerializeField] private BakuReiInputter inputter;
-    [SerializeField] private bool rigor;
 
-    [SerializeField] VecT<float> newPlan = new VecT<float>();
     protected override void Start()
     {
-        inputter = GetComponent<BakuReiInputter>();
         base.Start();
+        inputter = GetComponent<BakuReiInputter>();
+        aliveAction += AliveAction;
     }
-    public void InitialUpdate()
-    {
-        AssignSpeed();
-
-    }
-
     protected override void Update()
     {
-        InitialUpdate();
         RigorOperator();
+
         base.Update();
-        LimitPos(); 
+    }
+
+    public void AliveAction()
+    {
+        AssignSpeed();
+        AddAssignedMoveVelocity(inputter.moveInput.plan);
     }
 
     public void AssignSpeed()
@@ -43,11 +40,6 @@ public class Chara_Player : Chara
         }
     }
 
-    public void LimitPos()
-    {
-        moveVelocity.plan = inputter.moveInput.plan;
-        transform.position = posRange.Update(transform.position);
-    }
 
     public void RigorOperator()
     {
@@ -61,7 +53,5 @@ public class Chara_Player : Chara
             if (rigor == false) { i.Assign(); }
             else { i.plan = 0.0f; }
         }
-
-        
     }
 }

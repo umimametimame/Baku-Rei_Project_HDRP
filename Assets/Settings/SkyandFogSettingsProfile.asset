@@ -45,13 +45,13 @@ MonoBehaviour:
     m_Value: 0
   type:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   sphericalMode:
     m_OverrideState: 0
     m_Value: 1
   seaLevel:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: -1000
   planetaryRadius:
     m_OverrideState: 0
     m_Value: 6378100
@@ -74,7 +74,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 55261.973
   aerosolDensity:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.1
   aerosolTint:
     m_OverrideState: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
     m_Value: 8
   groundTint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 0, g: 0.09344964, b: 0.23584908, a: 1}
   groundColorTexture:
     m_OverrideState: 1
     m_Value: {fileID: 0}
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953beb541740ddc499d005ee80c9ff29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   quality:
     m_OverrideState: 1
     m_Value: 1
@@ -154,7 +154,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 1
   colorMode:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   color:
     m_OverrideState: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   maxFogDistance:
     m_OverrideState: 1
-    m_Value: 10000
+    m_Value: 400
   mipFogMaxMip:
     m_OverrideState: 0
     m_Value: 0.5
@@ -284,7 +284,7 @@ MonoBehaviour:
     m_Value: 0
   cloudPreset:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 4
   cumulusMap:
     m_OverrideState: 0
     m_Value: {fileID: 0}
@@ -489,7 +489,7 @@ MonoBehaviour:
     m_Value: 0.5
   sunLightDimmer:
     m_OverrideState: 0
-    m_Value: 0.7
+    m_Value: 0
   erosionOcclusion:
     m_OverrideState: 0
     m_Value: 0.1
@@ -583,9 +583,50 @@ MonoBehaviour:
   components:
   - {fileID: 1142777632297148762}
   - {fileID: -7724654706381055090}
-  - {fileID: -4151792930034644520}
-  - {fileID: 7642060734654139733}
   - {fileID: -1761610846834798420}
+  - {fileID: 924100757435842566}
+  - {fileID: 7642060734654139733}
+  - {fileID: -4151792930034644520}
+--- !u!114 &924100757435842566
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a76fd08475e21554b8f284f723dd7cf8, type: 3}
+  m_Name: WaterRendering
+  m_EditorClassIdentifier: 
+  active: 0
+  enable:
+    m_OverrideState: 1
+    m_Value: 1
+  minGridSize:
+    m_OverrideState: 1
+    m_Value: 50
+  maxGridSize:
+    m_OverrideState: 1
+    m_Value: 2500
+  elevationTransition:
+    m_OverrideState: 0
+    m_Value: 1000
+  numLevelOfDetails:
+    m_OverrideState: 1
+    m_Value: 2
+  maxTessellationFactor:
+    m_OverrideState: 1
+    m_Value: 10
+  tessellationFactorFadeStart:
+    m_OverrideState: 0
+    m_Value: 150
+  tessellationFactorFadeRange:
+    m_OverrideState: 0
+    m_Value: 1850
+  ambientProbeDimmer:
+    m_OverrideState: 1
+    m_Value: 1
 --- !u!114 &1142777632297148762
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -603,17 +644,17 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 4
   cloudType:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   skyAmbientMode:
     m_OverrideState: 1
     m_Value: 0
   windOrientation:
     m_OverrideState: 1
-    m_Value: 90
+    m_Value: 0
   windSpeed:
     m_OverrideState: 1
-    m_Value: 5000
+    m_Value: 1000
   fogType:
     m_OverrideState: 1
     m_Value: 0
@@ -632,7 +673,7 @@ MonoBehaviour:
   active: 1
   mode:
     m_OverrideState: 1
-    m_Value: 4
+    m_Value: 0
   meteringMode:
     m_OverrideState: 0
     m_Value: 2
@@ -640,14 +681,14 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   fixedExposure:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 13
   compensation:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 1
   limitMin:
     m_OverrideState: 1
-    m_Value: -2.5
+    m_Value: 0
   limitMax:
     m_OverrideState: 1
     m_Value: 14
