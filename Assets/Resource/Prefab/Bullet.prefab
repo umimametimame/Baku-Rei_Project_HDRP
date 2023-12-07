@@ -157,18 +157,18 @@ MonoBehaviour:
   rb: {fileID: 4138337629619648292}
   co: {fileID: 5394999389847203827}
   <img>k__BackingField: {fileID: 0}
-  <gravityEasing>k__BackingField:
-    traffic:
+  gravityOperator:
+    <traffic>k__BackingField:
       <active>k__BackingField: 0
-    <nowTime>k__BackingField: 0
-    <evaluteValue>k__BackingField: 0
-    <curve>k__BackingField:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  <gravityScale>k__BackingField: {x: 0, y: 0, z: 0}
+    <gravityProfile>k__BackingField: {fileID: 11400000, guid: 75653c4658de0c2408954681b14e5ada,
+      type: 2}
+    <time>k__BackingField:
+      <value>k__BackingField: 0
+      increseType: 0
+      reversalIncrese: 0
+    currentGravity:
+      <entity>k__BackingField: {x: 0, y: 0, z: 0}
+      <plan>k__BackingField: {x: 0, y: 0, z: 0}
   <velocityPlan>k__BackingField: {x: 0, y: 0, z: 0}
 --- !u!114 &1603221329797989686
 MonoBehaviour:
