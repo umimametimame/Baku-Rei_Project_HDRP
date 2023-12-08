@@ -7,6 +7,12 @@ using UnityEngine.InputSystem;
 
 public class Chara_Player : Chara_Bakurei
 {
+    public enum MotionState
+    {
+        Idle,
+        Move,
+
+    }
     [SerializeField] private BakuReiInputter inputter;
 
     protected override void Start()
