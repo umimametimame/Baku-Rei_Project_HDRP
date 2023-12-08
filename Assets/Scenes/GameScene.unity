@@ -324,14 +324,14 @@ MonoBehaviour:
   ripplesFadeDistance: 200
   customMaterial: {fileID: 0}
   startSmoothness: 0.95
-  endSmoothness: 0
+  endSmoothness: 0.95
   smoothnessFadeStart: 0
   smoothnessFadeDistance: 100
-  refractionColor: {r: 0.5453453, g: 0.86602, b: 0.8962264, a: 1}
+  refractionColor: {r: 0.13385546, g: 0.40647975, b: 0.6037736, a: 1}
   maxRefractionDistance: 3.5
   absorptionDistance: 42
-  scatteringColor: {r: 0.11712353, g: 0.3662027, b: 0.5283019, a: 1}
-  ambientScattering: 0.884
+  scatteringColor: {r: 0.10399608, g: 0.38679248, b: 0.38679248, a: 1}
+  ambientScattering: 0.546
   heightScattering: 0.657
   displacementScattering: 0.1
   directLightTipScattering: 0.6
@@ -398,7 +398,7 @@ MonoBehaviour:
   waterMaskOffset: {x: 0, y: 0}
   decalLayerMask: 1
   lightLayerMask: 1
-  underWater: 0
+  underWater: 1
   volumeBounds: {fileID: 0}
   volumeDepth: 50
   volumePrority: 0
@@ -412,12 +412,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365627469}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
-  m_LocalScale: {x: 0.000010000001, y: 1, z: 0.000010000001}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1938107384}
-  m_RootOrder: -1
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &636576892
 GameObject:
@@ -1572,7 +1572,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73c176f402d2c2f4d929aa5da7585d17, type: 2}
+  - {fileID: 2100000, guid: 75e81d1500ddd3c4faa64b43b0af9c1b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1610,13 +1610,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938107380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -10, z: 0}
+  m_LocalPosition: {x: 0, y: -20, z: 0}
   m_LocalScale: {x: 100000, y: 1, z: 100000}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 365627471}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2074504089
 GameObject:
