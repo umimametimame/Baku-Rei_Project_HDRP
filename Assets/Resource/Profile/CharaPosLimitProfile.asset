@@ -45,3 +45,81 @@ MonoBehaviour:
         maxExcess: 0
         inRange: 1
         currentValue: 1.6237496
+      list:
+      - minThan: 0
+        min: 0
+        maxThan: 0
+        max: 0
+        minExcess: 0
+        maxExcess: 0
+        inRange: 0
+        currentValue: 0
+      - minThan: 0
+        min: 0
+        maxThan: 0
+        max: 0
+        minExcess: 0
+        maxExcess: 0
+        inRange: 0
+        currentValue: 0
+      - minThan: 0
+        min: 0
+        maxThan: 0
+        max: 0
+        minExcess: 0
+        maxExcess: 0
+        inRange: 0
+        currentValue: 0
+  <valueInRange>k__BackingField:
+    x:
+      minThan: 0
+      min: -9
+      maxThan: 0
+      max: 9
+      minExcess: 0
+      maxExcess: 0
+      inRange: 1
+      currentValue: -0.5251452
+    y:
+      minThan: 0
+      min: 0
+      maxThan: 0
+      max: 0
+      minExcess: 0
+      maxExcess: 0
+      inRange: 0
+      currentValue: 0
+    z:
+      minThan: 0
+      min: -4
+      maxThan: 0
+      max: 8.5
+      minExcess: 0
+      maxExcess: 0
+      inRange: 1
+      currentValue: 1.6237496
+    list:
+    - minThan: 0
+      min: 0
+      maxThan: 0
+      max: 0
+      minExcess: 0
+      maxExcess: 0
+      inRange: 0
+      currentValue: 0
+    - minThan: 0
+      min: 0
+      maxThan: 0
+      max: 0
+      minExcess: 0
+      maxExcess: 0
+      inRange: 0
+      currentValue: 0
+    - minThan: 0
+      min: 0
+      maxThan: 0
+      max: 0
+      minExcess: 0
+      maxExcess: 0
+      inRange: 0
+      currentValue: 0
