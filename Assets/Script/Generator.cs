@@ -11,14 +11,15 @@ public class Generator : MonoBehaviour
         Alternate,
         Random,
     }
+    [SerializeField] private BakureiChara body;
     [SerializeField] private InputOtherScript inputter;
     [SerializeField] private bool active;
-    [SerializeField] private Instancer instancer;
+    [SerializeField] private Instancer bullet;
     [SerializeField] private int objLimit;
     [SerializeField] private Interval rate;
 
     [SerializeField] private GenerateType generateType;
-    [SerializeField] private List<Transform> mullze = new List<Transform>();
+    [SerializeField] private List<Transform> muzzle = new List<Transform>();
     [SerializeField] private int currentMuzzle;
     [SerializeField] private ValueChecker<GenerateType> checker = new ValueChecker<GenerateType>();
     private void Start()
@@ -28,7 +29,7 @@ public class Generator : MonoBehaviour
 
     private void Initialize()
     {
-        instancer.Initialize();
+        bullet.Initialize();
         ActionReset();
         checker.Initialize(generateType);
         checker.changedAction = ActionReset;
@@ -55,7 +56,7 @@ public class Generator : MonoBehaviour
         active = inputter.inputBool;
         checker.Update(generateType);
         rate.Update();
-        instancer.Update();
+        bullet.Update();
 
 
 
@@ -68,16 +69,16 @@ public class Generator : MonoBehaviour
         switch (generateType)
         {
             case GenerateType.Volley:
-                for(int i = 0; i < mullze.Count; ++i)
+                for(int i = 0; i < muzzle.Count; ++i)
                 {
-                    instancer.Instance(mullze[i]);
-                    instancer.lastObj.transform.eulerAngles = mullze[i].transform.eulerAngles;
+                    bullet.Instance(muzzle[i]);
+                    bullet.lastObj.transform.eulerAngles = muzzle[i].transform.eulerAngles;
                 }
                 break;
             case GenerateType.Alternate:
-                currentMuzzle = currentMuzzle % mullze.Count;
-                instancer.Instance(mullze[currentMuzzle]); 
-                instancer.lastObj.transform.eulerAngles = mullze[currentMuzzle].transform.eulerAngles;
+                currentMuzzle = currentMuzzle % muzzle.Count;
+                bullet.Instance(muzzle[currentMuzzle]); 
+                bullet.lastObj.transform.eulerAngles = muzzle[currentMuzzle].transform.eulerAngles;
 
                 currentMuzzle++;
                 break;

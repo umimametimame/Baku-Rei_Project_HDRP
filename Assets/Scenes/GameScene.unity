@@ -270,12 +270,13 @@ GameObject:
   - component: {fileID: 314160954}
   - component: {fileID: 314160959}
   - component: {fileID: 314160958}
-  - component: {fileID: 314160957}
-  - component: {fileID: 314160956}
   - component: {fileID: 314160955}
+  - component: {fileID: 314160960}
+  - component: {fileID: 314160956}
+  - component: {fileID: 314160961}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,7 +290,7 @@ Transform:
   m_GameObject: {fileID: 314160953}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 50, z: 9.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -308,12 +309,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  co: {fileID: 0}
   <img>k__BackingField: {fileID: 0}
   gravityOperator:
+    <gravityProfile>k__BackingField: {fileID: 11400000, guid: 75653c4658de0c2408954681b14e5ada,
+      type: 2}
     <traffic>k__BackingField:
-      <active>k__BackingField: 0
-    <gravityProfile>k__BackingField: {fileID: 0}
+      active: 0
+    reversal: 0
     <time>k__BackingField:
       <value>k__BackingField: 0
       increseType: 0
@@ -344,32 +346,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &314160957
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 314160953}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &314160958
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -422,6 +403,123 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314160953}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &314160960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314160953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db9ca43def00dc449207ed5e5a8fa14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <charaState>k__BackingField: 0
+  hp:
+    entity: 0
+    max: 0
+    autoRecoverValue: 0
+  speed:
+    entity: 0
+    max: 0
+    autoRecoverValue: 0
+  pow:
+    entity: 0
+    max: 0
+    autoRecoverValue: 0
+  <alive>k__BackingField: 0
+  respawnInterval:
+    <active>k__BackingField: 0
+    <interval>k__BackingField: 0
+    <time>k__BackingField:
+      <value>k__BackingField: 0
+      increseType: 0
+      reversalIncrese: 0
+  moveVelocity:
+    <entity>k__BackingField: {x: 0, y: 0, z: 0}
+    <plan>k__BackingField: {x: 0, y: 0, z: 0}
+  spawnInvincible:
+    <active>k__BackingField: 0
+    <interval>k__BackingField: 0
+    <time>k__BackingField:
+      <value>k__BackingField: 0
+      increseType: 0
+      reversalIncrese: 0
+  invincible:
+    <active>k__BackingField: 0
+    <interval>k__BackingField: 0
+    <time>k__BackingField:
+      <value>k__BackingField: 0
+      increseType: 0
+      reversalIncrese: 0
+  <lastAttacker>k__BackingField: {fileID: 0}
+  <camp>k__BackingField:
+    <entity>k__BackingField: 1
+    <plan>k__BackingField: 1
+  thisPosRange:
+    <profile>k__BackingField: {fileID: 0}
+    <enableAxis>k__BackingField:
+      x: 0
+      y: 0
+      z: 0
+    <valueInRange>k__BackingField:
+      x:
+        minThan: 0
+        range:
+          min: 0
+          max: 0
+        maxThan: 0
+        minExcess: 0
+        maxExcess: 0
+        inRange: 0
+        currentValue: 0
+      y:
+        minThan: 0
+        range:
+          min: 0
+          max: 0
+        maxThan: 0
+        minExcess: 0
+        maxExcess: 0
+        inRange: 0
+        currentValue: 0
+      z:
+        minThan: 0
+        range:
+          min: 0
+          max: 0
+        maxThan: 0
+        minExcess: 0
+        maxExcess: 0
+        inRange: 0
+        currentValue: 0
+  playerCam: {fileID: 636576894}
+  <rigor>k__BackingField: 0
+  <hitBox>k__BackingField: []
+--- !u!136 &314160961
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314160953}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.50000024
+  m_Height: 2.0000005
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &365627469
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,7 +597,7 @@ MonoBehaviour:
   waterCurrentDebugMode: 0
   currentDebugMultiplier: 1
   waterFoamDebugMode: 0
-  underWater: 1
+  underWater: 0
   volumeBounds: {fileID: 0}
   volumeDepth: 50
   volumeHeight: 0
@@ -699,7 +797,7 @@ Transform:
   m_GameObject: {fileID: 636576892}
   serializedVersion: 2
   m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
-  m_LocalPosition: {x: 0, y: 112, z: 4}
+  m_LocalPosition: {x: 0, y: 62, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -898,13 +996,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 636576898}
-  co: {fileID: 0}
   <img>k__BackingField: {fileID: 0}
   gravityOperator:
-    <traffic>k__BackingField:
-      <active>k__BackingField: 0
     <gravityProfile>k__BackingField: {fileID: 11400000, guid: 75653c4658de0c2408954681b14e5ada,
       type: 2}
+    <traffic>k__BackingField:
+      active: 0
+    reversal: 0
     <time>k__BackingField:
       <value>k__BackingField: 0
       increseType: 0
@@ -943,7 +1041,7 @@ Transform:
   m_GameObject: {fileID: 654141033}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 100, z: 0}
+  m_LocalPosition: {x: 0, y: 50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -992,13 +1090,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 654141036}
-  co: {fileID: 276224629}
   <img>k__BackingField: {fileID: 0}
   gravityOperator:
-    <traffic>k__BackingField:
-      <active>k__BackingField: 0
     <gravityProfile>k__BackingField: {fileID: 11400000, guid: 75653c4658de0c2408954681b14e5ada,
       type: 2}
+    <traffic>k__BackingField:
+      active: 0
+    reversal: 0
     <time>k__BackingField:
       <value>k__BackingField: 0
       increseType: 0
@@ -1058,42 +1156,50 @@ MonoBehaviour:
       increseType: 0
       reversalIncrese: 0
   <lastAttacker>k__BackingField: {fileID: 0}
-  posLimitterProfile: {fileID: 11400000, guid: 1f4a3ca573449d640a90265fcd27c052, type: 2}
+  <camp>k__BackingField:
+    <entity>k__BackingField: 0
+    <plan>k__BackingField: 0
   thisPosRange:
+    <profile>k__BackingField: {fileID: 11400000, guid: 3a55566ac0a17a544b4d2806e4a96e2c,
+      type: 2}
     <enableAxis>k__BackingField:
-      x: 0
+      x: 1
       y: 0
-      z: 0
+      z: 1
     <valueInRange>k__BackingField:
       x:
         minThan: 0
-        min: 0
+        range:
+          min: 0
+          max: 0
         maxThan: 0
-        max: 0
         minExcess: 0
         maxExcess: 0
         inRange: 0
         currentValue: 0
       y:
         minThan: 0
-        min: 0
+        range:
+          min: 0
+          max: 0
         maxThan: 0
-        max: 0
         minExcess: 0
         maxExcess: 0
         inRange: 0
         currentValue: 0
       z:
         minThan: 0
-        min: 0
+        range:
+          min: 0
+          max: 0
         maxThan: 0
-        max: 0
         minExcess: 0
         maxExcess: 0
         inRange: 0
         currentValue: 0
   playerCam: {fileID: 636576894}
   <rigor>k__BackingField: 0
+  <hitBox>k__BackingField: []
   inputter: {fileID: 654141039}
 --- !u!114 &654141039
 MonoBehaviour:
@@ -1117,11 +1223,14 @@ MonoBehaviour:
       <plan>k__BackingField: {x: 0, y: 0, z: 0}
     floatRange:
       minThan: 0
-      min: 0
+      range:
+        min: 0
+        max: 0
       maxThan: 0
-      max: 0
       minExcess: 0
       maxExcess: 0
+      inRange: 0
+      currentValue: 0
     thisType: 0
   <shiftInput>k__BackingField:
     <inputting>k__BackingField: 0
@@ -1130,11 +1239,14 @@ MonoBehaviour:
       <plan>k__BackingField: 0
     floatRange:
       minThan: 0
-      min: 0.5
+      range:
+        min: 0.7
+        max: 1
       maxThan: 0
-      max: 1
       minExcess: 0
       maxExcess: 0
+      inRange: 0
+      currentValue: 0
     thisType: 0
   <attack01Input>k__BackingField:
     <inputting>k__BackingField: 0
@@ -1143,11 +1255,14 @@ MonoBehaviour:
       <plan>k__BackingField: 0
     floatRange:
       minThan: 0
-      min: 0
+      range:
+        min: 0
+        max: 0
       maxThan: 0
-      max: 0
       minExcess: 0
       maxExcess: 0
+      inRange: 0
+      currentValue: 0
     thisType: 0
 --- !u!114 &654141040
 MonoBehaviour:
@@ -1444,11 +1559,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e1ca8cc53d67e4f9da5cbdd16b4977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 654141038}
   inputter:
     inputter: {fileID: 654141039}
     type: 2
   active: 0
-  instancer:
+  bullet:
     <obj>k__BackingField: {fileID: 7491449917723968159, guid: 43207fb3669697945a1184965a2f5009,
       type: 3}
     <clones>k__BackingField: []
@@ -1464,7 +1580,7 @@ MonoBehaviour:
       increseType: 0
       reversalIncrese: 0
   generateType: 1
-  mullze:
+  muzzle:
   - {fileID: 1303307550}
   - {fileID: 1799341584}
   currentMuzzle: 0
@@ -1493,7 +1609,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1303307550}
   - component: {fileID: 1303307553}
-  - component: {fileID: 1303307552}
+  - component: {fileID: 1303307554}
   m_Layer: 0
   m_Name: Muzzle01
   m_TagString: Untagged
@@ -1510,20 +1626,28 @@ Transform:
   m_GameObject: {fileID: 1303307549}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.275, y: 0, z: 0.5}
+  m_LocalPosition: {x: 0.275, y: 0, z: 0.55}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 654141034}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &1303307552
+--- !u!33 &1303307553
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303307549}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1303307554
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303307549}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1535,10 +1659,10 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b456ece2eee341f49a23e6e27866aef6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1560,14 +1684,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1303307553
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303307549}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1386933855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1593,7 +1709,7 @@ Transform:
   m_GameObject: {fileID: 1386933855}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 100, z: 9.44}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1709,7 +1825,7 @@ Transform:
   m_GameObject: {fileID: 1799341583}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.275, y: 0, z: 0.5}
+  m_LocalPosition: {x: -0.275, y: 0, z: 0.55}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1722,7 +1838,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799341583}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1737,7 +1853,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b456ece2eee341f49a23e6e27866aef6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1778,7 +1894,6 @@ GameObject:
   - component: {fileID: 1938107384}
   - component: {fileID: 1938107383}
   - component: {fileID: 1938107382}
-  - component: {fileID: 1938107381}
   m_Layer: 4
   m_Name: Plane
   m_TagString: Untagged
@@ -1786,28 +1901,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &1938107381
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938107380}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1938107382
 MeshRenderer:
   m_ObjectHideFlags: 0

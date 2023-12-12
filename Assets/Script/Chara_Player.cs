@@ -5,7 +5,7 @@ using AddClass;
 using GenericChara;
 using UnityEngine.InputSystem;
 
-public class Chara_Player : Chara_Bakurei
+public class Chara_Player : BakureiChara
 {
     public enum MotionState
     {
@@ -18,6 +18,7 @@ public class Chara_Player : Chara_Bakurei
     protected override void Start()
     {
         base.Start();
+        SetParentTag(Tags.Chara);
         inputter = GetComponent<BakuReiInputter>();
         aliveAction += AliveAction;
     }

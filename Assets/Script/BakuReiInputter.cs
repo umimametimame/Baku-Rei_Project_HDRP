@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -97,21 +98,31 @@ public class InputOtherDrawer : MyPropertyDrawer
 
     protected override void Update(Rect _pos, SerializedProperty _prop, GUIContent _label)
     {
-        List<LabelAndproperty> list = new List<LabelAndproperty>() { inputter, type };
 
-        inputter.Set(pos, prop);
         inputter.label = "Inputter";
-        type.Set(pos, prop);
         type.label = "Type";
 
-        labelWidthAve = 77.0f / 2.0f;
+        List<LabelAndproperty> list = new List<LabelAndproperty>() { inputter };
+        List<LabelAndproperty> list2 = new List<LabelAndproperty>() { type };
+        verticalProps = new List<List<LabelAndproperty>> { list, list2 };
+        SetElements();
+        SetPropsList(verticalProps);
 
-        inputter.InitialPosSet(pos.x, 44, UniformedRatio(2, 0.4f));
-        type.neighbor = inputter;
-        type.NeighborPosSet(30, UniformedRatio(2, 0.6f));
+        inputter.labelRect.Width = 46;
+        type.labelRect.Width = 30;
+        DrawPropsList();
 
-        inputter.Draw();
-        type.Draw();
+        //// 各変数の位置と高さを計算
+        //Rect variable1Rect = new Rect(pos.x, pos.y, pos.width, EditorGUIUtility.singleLineHeight);
+        //Rect variable2Rect = new Rect(pos.x, pos.y + EditorGUIUtility.singleLineHeight, pos.width, EditorGUIUtility.singleLineHeight);
+
+        //// 各変数のラベルとプロパティを表示
+        //EditorGUI.LabelField(variable1Rect, "Variable 1");
+        //EditorGUI.PropertyField(new Rect(variable1Rect.x + EditorGUIUtility.labelWidth, variable1Rect.y, variable1Rect.width - EditorGUIUtility.labelWidth, variable1Rect.height), prop.FindPropertyRelative("inputter"), GUIContent.none);
+
+        //EditorGUI.LabelField(variable2Rect, "Variable 2");
+        //EditorGUI.PropertyField(new Rect(variable2Rect.x + EditorGUIUtility.labelWidth, variable2Rect.y, variable2Rect.width - EditorGUIUtility.labelWidth, variable2Rect.height), prop.FindPropertyRelative("type"), GUIContent.none);
+
     }
 }
 #endif

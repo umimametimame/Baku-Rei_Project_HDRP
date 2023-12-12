@@ -3,18 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AddClass;
-public class Bullet : Chara
+using System;
+
+public class Bullet : BakureiChara
 {
     [SerializeField] private BulletLocusOperator bulletLocus;
     [SerializeField] private Interval lifeTime;
+    [SerializeField] private MotionCollider attackBox;
+    private bool AttackBoxPassingFunc(bool passing, Collider you)
+    {
+        if (you.tag != Tags.Body)
+        {
+            passing = false;
+            return passing;
+        }
+
+        BakureiChara youChara = you.GetComponent<BakureiChara>();
+        if (youChara.camp.plan != this.camp.plan)
+        {
+            passing = false;
+            return passing;
+        }
+
+        return passing;
+    }
     protected override void Start()
     {
         base.Start();
+        SetParentTag(Tags.Bullet);
+        
         assignSpeed = speed.entity;
         bulletLocus.Initialize();
         lifeTime.activeAction += () => StateChange(CharaState.Death);   // ¶‘¶ŠÔŒÀŠE‚É”j‰ó‚³‚ê‚é
         aliveAction += AliveAction;
         deathAction += DeathAction;
+
+        attackBox.passJudgeFunc += AttackBoxPassingFunc;
+        attackBox.Launch(pow.entity);
     }
 
     protected override void Spawn()
@@ -43,6 +68,10 @@ public class Bullet : Chara
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// ’e‚Ì‹O“¹(Šp“x)‚ğ•ÏX‚·‚é
+    /// </summary>
+    /// <returns></returns>
     public Vector3 SolutionChangeRot()
     {
         Vector3 newEuler = transform.eulerAngles;
@@ -53,6 +82,9 @@ public class Bullet : Chara
         return newEuler;
     }
 
+    /// <summary>
+    /// ’e‚Ì‹O“¹(ƒxƒNƒgƒ‹E‘¬“x)‚ğ•ÏX‚·‚é
+    /// </summary>
     public void SolutionAddPos()
     {
 
@@ -68,4 +100,9 @@ public class Bullet : Chara
         AddAssignedMoveVelocity(newVelo);
     }
 
+
+    public void OnTriggerStay(Collider you)
+    {
+        
+    }
 }
