@@ -47,6 +47,11 @@ public class BakureiChara : Chara
     {
         InitialUpdate();
         base.Update();
+
+        if(hp.entity <= 0.0f)
+        {
+            StateChange(CharaState.Death);
+        }
     }
     public void LimitPos()
     {

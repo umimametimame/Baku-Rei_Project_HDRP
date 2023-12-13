@@ -8,10 +8,18 @@ public class Chara_Enemy : BakureiChara
     {
         base.Start();
         SetParentTag(Tags.Chara);
+
+        deathAction += DeathAction;
     }
 
     protected override void Update()
     {
         base.Update();
+        invincible.Update();
+    }
+
+    private void DeathAction()
+    {
+        Destroy(transform.parent.gameObject);
     }
 }

@@ -4,8 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BulletLocus", menuName = "ScriptableObject/BulletLocus")]
-public class BulletLocus : ScriptableObject
+[CreateAssetMenu(fileName = "Locus", menuName = "ScriptableObject/Locus")]
+public class Locus : ScriptableObject
 {
     [field: SerializeField] public Vec3Curve addPos { get; private set; }
     [SerializeField, Button("ZeroFill","ZeroFill", 0)] private int addPosZeroFillButton;
@@ -46,9 +46,9 @@ public class BulletLocus : ScriptableObject
     }
 }
 
-[Serializable] public class BulletLocusOperator
+[Serializable] public class LocusOperator
 {
-    [field: SerializeField] private BulletLocus bulletLocus;
+    [field: SerializeField] private Locus bulletLocus;
     [field: SerializeField, NonEditable] public Vector3 posEva { get; private set; }
     [field: SerializeField, NonEditable] public Vector3 rotEva { get; private set; }
     [field: SerializeField, NonEditable] public VariedTime currentTime { get; private set; }

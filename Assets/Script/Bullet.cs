@@ -7,25 +7,33 @@ using System;
 
 public class Bullet : BakureiChara
 {
-    [SerializeField] private BulletLocusOperator bulletLocus;
+    [SerializeField] private LocusOperator bulletLocus;
     [SerializeField] private Interval lifeTime;
     [SerializeField] private MotionCollider attackBox;
+    [SerializeField] private bool penetrate;
     private bool AttackBoxPassingFunc(bool passing, Collider you)
     {
-        if (you.tag != Tags.Body)
+        if (you.tag != Tags.Body)   // ìñÇΩÇËîªíËÇéùÇ¡ÇƒÇ¢Ç»Ç©Ç¡ÇΩÇÁ
         {
             passing = false;
             return passing;
         }
 
         BakureiChara youChara = you.GetComponent<BakureiChara>();
-        if (youChara.camp.plan != this.camp.plan)
+        if (youChara.camp.plan == this.camp.plan)   // êwâcÇ™ìØÇ∂Ç»ÇÁ
         {
             passing = false;
             return passing;
         }
 
         return passing;
+    }
+    private void HitAction()
+    {
+        if(penetrate == false)
+        {
+            StateChange(CharaState.Death);
+        }
     }
     protected override void Start()
     {
@@ -38,7 +46,10 @@ public class Bullet : BakureiChara
         aliveAction += AliveAction;
         deathAction += DeathAction;
 
+        attackBox.Initialize();
+        attackBox.tag = Tags.Bullet;    
         attackBox.passJudgeFunc += AttackBoxPassingFunc;
+        attackBox.hitAction += HitAction;
         attackBox.Launch(pow.entity);
     }
 
@@ -65,7 +76,7 @@ public class Bullet : BakureiChara
 
     public void DeathAction()
     {
-        Destroy(gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     /// <summary>
@@ -74,8 +85,7 @@ public class Bullet : BakureiChara
     /// <returns></returns>
     public Vector3 SolutionChangeRot()
     {
-        Vector3 newEuler = transform.eulerAngles;
-        newEuler += bulletLocus.rotEva;
+        Vector3 newEuler = bulletLocus.rotEva;
 
         transform.eulerAngles = newEuler;
 
