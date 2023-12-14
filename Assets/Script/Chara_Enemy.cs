@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Chara_Enemy : BakureiChara
 {
+    [SerializeField] private Locus spawnMotion;
     protected override void Start()
     {
         base.Start();

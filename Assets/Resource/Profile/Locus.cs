@@ -10,9 +10,9 @@ public class Locus : ScriptableObject
     [field: SerializeField] public Vec3Curve addPos { get; private set; }
     [SerializeField, Button("ZeroFill","ZeroFill", 0)] private int addPosZeroFillButton;
     [SerializeField, Button("Clear", "Clear", 0)] private int addPosClear;
-    [field: SerializeField] public Vec3Curve addRot { get; private set; }
-    [SerializeField, Button("ZeroFill", "ZeroFill", 1)] private int addRotZeroFillButton;
-    [SerializeField, Button("Clear", "Clear", 1)] private int addRotClear;
+    [field: SerializeField] public Vec3Curve assignEulerAngle { get; private set; }
+    [SerializeField, Button("ZeroFill", "ZeroFill", 1)] private int assignEulerAngleZeroFillButton;
+    [SerializeField, Button("Clear", "Clear", 1)] private int assignEulerAngleClear;
 
 
 
@@ -25,8 +25,8 @@ public class Locus : ScriptableObject
                 addPos.ZeroFill();
                 break;
             case 1:
-                addRot.Reset();
-                addRot.ZeroFill();
+                assignEulerAngle.Reset();
+                assignEulerAngle.ZeroFill();
                 break;
         }
     }
@@ -39,8 +39,8 @@ public class Locus : ScriptableObject
                 addPos.Clear();
                 break;
             case 1:
-                addRot.Reset();
-                addRot.Clear();
+                assignEulerAngle.Reset();
+                assignEulerAngle.Clear();
                 break;
         }
     }
@@ -63,7 +63,7 @@ public class Locus : ScriptableObject
         currentTime.Initialize();
 
         posEva = bulletLocus.addPos.Eva(currentTime.value);
-        rotEva = bulletLocus.addRot.Eva(currentTime.value);
+        rotEva = bulletLocus.assignEulerAngle.Eva(currentTime.value);
 
     }
 
@@ -75,7 +75,7 @@ public class Locus : ScriptableObject
     public void Update()
     {
         posEva = bulletLocus.addPos.Eva(currentTime.value);
-        rotEva = bulletLocus.addRot.Eva(currentTime.value);
+        rotEva = bulletLocus.assignEulerAngle.Eva(currentTime.value);
 
         currentTime.Update();
     }

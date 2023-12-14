@@ -2370,6 +2370,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 53372916}
   - {fileID: 636576895}
   - {fileID: 110793506}
   - {fileID: 1656636341}
@@ -2377,5 +2378,4 @@ SceneRoots:
   - {fileID: 1938107384}
   - {fileID: 819168328}
   - {fileID: 1598036191}
-  - {fileID: 53372916}
   - {fileID: 1386933856}
