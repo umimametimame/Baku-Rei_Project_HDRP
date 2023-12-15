@@ -565,8 +565,8 @@ GameObject:
   - component: {fileID: 314160954}
   - component: {fileID: 314160959}
   - component: {fileID: 314160958}
-  - component: {fileID: 314160955}
   - component: {fileID: 314160960}
+  - component: {fileID: 314160955}
   - component: {fileID: 314160956}
   - component: {fileID: 314160961}
   m_Layer: 0
@@ -603,7 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 449eb00514cfc034f8560bb6b95088bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 314160956}
   <img>k__BackingField: {fileID: 0}
   gravityOperator:
     <gravityProfile>k__BackingField: {fileID: 11400000, guid: 75653c4658de0c2408954681b14e5ada,
@@ -792,6 +792,25 @@ MonoBehaviour:
   playerCam: {fileID: 636576894}
   <rigor>k__BackingField: 0
   <hitBox>k__BackingField: []
+  motionState: 0
+  spawnMotion:
+    traffic:
+      active: 0
+    motionLocus:
+      bulletLocus: {fileID: 11400000, guid: 4dbb2eddfe7548848a9531b2da5436f1, type: 2}
+      <posEva>k__BackingField: {x: 0, y: 0, z: 0}
+      <rotEva>k__BackingField: {x: 0, y: 0, z: 0}
+      <currentTime>k__BackingField:
+        <value>k__BackingField: 0
+        increseType: 0
+        reversalIncrese: 0
+    motionTime:
+      <active>k__BackingField: 0
+      <interval>k__BackingField: 2
+      <time>k__BackingField:
+        <value>k__BackingField: 0
+        increseType: 0
+        reversalIncrese: 0
 --- !u!136 &314160961
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1586,7 +1605,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: GamePad
+  m_DefaultControlScheme: Keybord
   m_DefaultActionMap: Main
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

@@ -51,7 +51,7 @@ public class Locus : ScriptableObject
     [field: SerializeField] private Locus bulletLocus;
     [field: SerializeField, NonEditable] public Vector3 posEva { get; private set; }
     [field: SerializeField, NonEditable] public Vector3 rotEva { get; private set; }
-    [field: SerializeField, NonEditable] public VariedTime currentTime { get; private set; }
+    [field: SerializeField, NonEditable] public VariedTime currentTime { get; private set; } = new VariedTime();
 
     public void Initialize()
     {
@@ -78,6 +78,19 @@ public class Locus : ScriptableObject
         rotEva = bulletLocus.assignEulerAngle.Eva(currentTime.value);
 
         currentTime.Update();
+    }
+
+    /// <summary>
+    /// äÑçáÇ≈EvaluteÇéZèoÇ∑ÇÈ
+    /// </summary>
+    /// <param name="ratio"></param>
+    public void Update(float ratio)
+    {
+        posEva = bulletLocus.addPos.Eva(currentTime.value);
+        rotEva = bulletLocus.assignEulerAngle.Eva(currentTime.value);
+
+        currentTime.Update();
+
     }
 
 }

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7930787892003729401}
   - component: {fileID: 3925133376110931417}
   - component: {fileID: 8290277484079244493}
-  - component: {fileID: 4536343886992796122}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -110,25 +109,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4536343886992796122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5591037282437726241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73216e1b6932ba1468d2da8d7a299a2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <parent>k__BackingField: {fileID: 3739411369128042706}
-  <enable>k__BackingField: 0
-  thisCollider: {fileID: 8290277484079244493}
-  <hitCount>k__BackingField: 0
-  damage: 0
-  hitCountEntitys: 
-  targets: []
 --- !u!1 &6815944297152333686
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,6 +120,8 @@ GameObject:
   - component: {fileID: 2507402952283784963}
   - component: {fileID: 7638460603832313029}
   - component: {fileID: 3739411369128042706}
+  - component: {fileID: 6977118252669320113}
+  - component: {fileID: 8530383251128299942}
   - component: {fileID: 739754216036556134}
   m_Layer: 0
   m_Name: Body
@@ -301,8 +283,57 @@ MonoBehaviour:
       <value>k__BackingField: 0
       increseType: 0
       reversalIncrese: 0
-  attackBox: {fileID: 4536343886992796122}
+  attackBox: {fileID: 8530383251128299942}
   penetrate: 0
+--- !u!114 &6977118252669320113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6815944297152333686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1b700deff176e14cbea055f8a813cb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onColliderType: 1
+  colliderEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8530383251128299942}
+        m_TargetAssemblyTypeName: MotionCollider, Assembly-CSharp
+        m_MethodName: OnTriggerAction
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8290277484079244493}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Collider, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8530383251128299942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6815944297152333686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73216e1b6932ba1468d2da8d7a299a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <parent>k__BackingField: {fileID: 3739411369128042706}
+  <enable>k__BackingField: 0
+  thisCollider: {fileID: 8290277484079244493}
+  <hitCount>k__BackingField: 0
+  damage: 0
+  hitCountEntitys: 
+  targets: []
+  targetColliders:
+    <targets>k__BackingField: []
 --- !u!54 &739754216036556134
 Rigidbody:
   m_ObjectHideFlags: 0
