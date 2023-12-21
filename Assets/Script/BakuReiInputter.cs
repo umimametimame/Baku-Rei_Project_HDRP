@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using UnityEngine.InputSystem.Users;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -14,6 +15,9 @@ public class BakuReiInputter : InputOperator
 {
     [field: SerializeField, NonEditable] public InputVecOrFloat<float> shiftInput { get; private set; } = new InputVecOrFloat<float>();
     [field: SerializeField, NonEditable] public InputVecOrFloat<float> attack01Input { get; private set; } = new InputVecOrFloat<float>();
+
+    [field: SerializeField, NonEditable] public InputHorizontal horizontal { get; private set; }
+    [field: SerializeField, NonEditable] public InputVertical vertical { get; private set; }
     public void Start()
     {
         SetList();
@@ -22,6 +26,35 @@ public class BakuReiInputter : InputOperator
     }
 
 
+    public void AssignInputDirection()
+    {
+        if (MoveInput.plan.x > 0)
+        {
+            horizontal = InputHorizontal.Right;
+        }
+        else if (MoveInput.plan.x < 0)
+        {
+            horizontal = InputHorizontal.Left;
+        }
+        else
+        {
+            horizontal = InputHorizontal.None;
+        }
+
+        if (MoveInput.plan.z > 0)
+        {
+            vertical = InputVertical.Progress;
+        }
+        else if (MoveInput.plan.z < 0)
+        {
+            vertical = InputVertical.Retreat;
+        }
+        else if(MoveInput.plan.z == 0)
+        {
+            vertical = InputVertical.None;
+        }
+
+    }
 
     #region PlayerInputEvent
     public void OnShift(InputValue value)

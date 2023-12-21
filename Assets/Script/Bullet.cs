@@ -11,6 +11,7 @@ public class Bullet : BakureiChara
     [SerializeField] private Interval lifeTime;
     [SerializeField] private MotionCollider attackBox;
     [SerializeField] private bool penetrate;
+    [SerializeField, NonEditable] private bool inductionOver;
     private bool AttackBoxPassingFunc(bool passing, Collider you)
     {
         if (you.tag != Tags.Body)   // “–‚½‚è”»’è‚ğ‚Á‚Ä‚¢‚È‚©‚Á‚½‚ç
@@ -19,7 +20,7 @@ public class Bullet : BakureiChara
             return passing;
         }
 
-        BakureiChara youChara = you.GetComponent<BakureiChara>();
+        BakureiChara youChara = you.transform.root.Find(Tags.Body).GetComponent<BakureiChara>();
         if (youChara.camp.plan == this.camp.plan)   // w‰c‚ª“¯‚¶‚È‚ç
         {
             passing = false;
@@ -51,6 +52,8 @@ public class Bullet : BakureiChara
         attackBox.passJudgeFunc += AttackBoxPassingFunc;
         attackBox.hitAction += HitAction;
         attackBox.Launch(pow.entity);
+
+        inductionOver = false;
     }
 
     protected override void Spawn()

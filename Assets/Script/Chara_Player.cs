@@ -14,6 +14,11 @@ public class Chara_Player : BakureiChara
 
     }
     [SerializeField] private BakuReiInputter inputter;
+    [SerializeField] private MinMax slopeByZAxis = new MinMax();
+
+    [SerializeField] private Easing slopeEasing = new Easing();
+    [field: SerializeField] ValueChecker<InputHorizontal> horizontalChecker { get; set; } = new ValueChecker<InputHorizontal>();
+    [field: SerializeField] ValueChecker<InputVertical> verticalChecker { get; set; } = new ValueChecker<InputVertical>();
 
     protected override void Start()
     {
@@ -21,6 +26,13 @@ public class Chara_Player : BakureiChara
         SetParentTag(Tags.Chara);
         inputter = GetComponent<BakuReiInputter>();
         aliveAction += AliveAction;
+
+        slopeEasing.Initialize();
+        slopeEasing.active = true;
+
+        horizontalChecker.Initialize(inputter.horizontal);
+        horizontalChecker.changedAction += () => slopeEasing.Reset();
+        verticalChecker.Initialize(inputter.vertical);
     }
     protected override void Update()
     {
@@ -33,7 +45,14 @@ public class Chara_Player : BakureiChara
     {
         AssignSpeed();
         AddAssignedMoveVelocity(inputter.moveInput.plan);
+
+        slopeEasing.Update();
+        inputter.AssignInputDirection();
+        InputDirectionCheck();
+        HorizontalSlopeObjUpdate();
     }
+
+    
 
     public void AssignSpeed()
     {
@@ -47,6 +66,32 @@ public class Chara_Player : BakureiChara
         }
     }
 
+    private void InputDirectionCheck()
+    {
+        horizontalChecker.Update(inputter.horizontal);
+        verticalChecker.Update(inputter.vertical);
+    }
+
+    private void HorizontalSlopeObjUpdate()
+    {
+        Vector3 slope = model.transform.eulerAngles;
+        switch (inputter.horizontal)
+        {
+            case InputHorizontal.None:
+                slope.z = 0.0f;
+                break;
+            case InputHorizontal.Right:
+                slope.z = slopeByZAxis.max;
+                break;
+            case InputHorizontal.Left:
+                slope.z = slopeByZAxis.min;
+                break;
+        }
+
+        
+        model.transform.eulerAngles = Vector3.Lerp(AddFunction.GetNormalizedAngles(model.transform.eulerAngles, -180, 180), slope, slopeEasing.evaluteValue);
+        
+    }
 
     public void RigorOperator()
     {
@@ -61,4 +106,19 @@ public class Chara_Player : BakureiChara
             else { i.plan = 0.0f; }
         }
     }
+}
+
+
+public enum InputHorizontal
+{
+    None,
+    Right,
+    Left,
+}
+
+public enum InputVertical
+{
+    None,
+    Progress,
+    Retreat,
 }

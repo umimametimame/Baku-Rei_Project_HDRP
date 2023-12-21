@@ -168,7 +168,7 @@ MonoBehaviour:
     reversal: 0
     <time>k__BackingField:
       <value>k__BackingField: 0
-      increseType: 0
+      <increseType>k__BackingField: 0
       reversalIncrese: 0
     currentGravity:
       <entity>k__BackingField: {x: 0, y: 0, z: 0}
@@ -205,7 +205,7 @@ MonoBehaviour:
     <interval>k__BackingField: 0
     <time>k__BackingField:
       <value>k__BackingField: 0
-      increseType: 0
+      <increseType>k__BackingField: 0
       reversalIncrese: 0
   moveVelocity:
     <entity>k__BackingField: {x: 0, y: 0, z: 0}
@@ -215,16 +215,17 @@ MonoBehaviour:
     <interval>k__BackingField: 0
     <time>k__BackingField:
       <value>k__BackingField: 0
-      increseType: 0
+      <increseType>k__BackingField: 0
       reversalIncrese: 0
   invincible:
     <active>k__BackingField: 0
     <interval>k__BackingField: 0
     <time>k__BackingField:
       <value>k__BackingField: 0
-      increseType: 0
+      <increseType>k__BackingField: 0
       reversalIncrese: 0
   <lastAttacker>k__BackingField: {fileID: 0}
+  model: {fileID: 0}
   <camp>k__BackingField:
     <entity>k__BackingField: 0
     <plan>k__BackingField: 0
@@ -269,19 +270,20 @@ MonoBehaviour:
   <rigor>k__BackingField: 0
   <hitBox>k__BackingField: []
   bulletLocus:
-    bulletLocus: {fileID: 11400000, guid: bd434c2644a513347a5b87ea87302837, type: 2}
+    locus: {fileID: 11400000, guid: bd434c2644a513347a5b87ea87302837, type: 2}
     <posEva>k__BackingField: {x: 0, y: 0, z: 0}
     <rotEva>k__BackingField: {x: 0, y: 0, z: 0}
+    <modelRotEva>k__BackingField: {x: 0, y: 0, z: 0}
     <currentTime>k__BackingField:
       <value>k__BackingField: 0
-      increseType: 0
+      <increseType>k__BackingField: 0
       reversalIncrese: 0
   lifeTime:
     <active>k__BackingField: 0
     <interval>k__BackingField: 2
     <time>k__BackingField:
       <value>k__BackingField: 0
-      increseType: 0
+      <increseType>k__BackingField: 0
       reversalIncrese: 0
   attackBox: {fileID: 8530383251128299942}
   penetrate: 0
@@ -371,7 +373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 907874258970382700}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Bullet_Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -9,13 +9,15 @@ using UnityEngine;
 /// </summary>
 public class BakureiChara : Chara
 {
+    [SerializeField] protected GameObject model;
     [field: SerializeField] public EntityAndPlan<Camp> camp { get; private set; }
     [SerializeField] private VecRangeOperator thisPosRange = new VecRangeOperator();
     [SerializeField] private Camera playerCam;
     [field: SerializeField, NonEditable] public bool rigor { get; set; }
-    [field: SerializeField, NonEditable] public List<Collider> hitBox { get; private set; }
+    [field: SerializeField] public List<Collider> hitBox { get; private set; }
     protected override void Start()
     {
+        model = transform.GetChild(0).gameObject;
         thisPosRange.AssignProfile();
         assignSpeed = speed.entity;
         aliveAction += LimitPos;
@@ -56,8 +58,30 @@ public class BakureiChara : Chara
     public void LimitPos()
     {
         if(thisPosRange.profile == null) { return; }
-        transform.position = thisPosRange.Update(playerCam.transform.position, transform.position); ;
+        transform.position = thisPosRange.Update(Camera.main.transform.position, transform.position); ;
     }
+
+    protected void AssignMotionVelocity(LocusMotion motion)
+    {
+        Vector3 newVelo = motion.velocity * assignSpeed;
+        newVelo.z = -newVelo.z;     // ŠJ”­Œø—¦‚Ì‚½‚ßZ‚Ì‚Ý”½“]
+
+        moveVelocity.plan += newVelo;
+    }
+
+    protected void AssignEulerAngle(LocusMotion motion)
+    {
+        Vector3 newEuler = motion.eulerAngle;
+
+        transform.eulerAngles = newEuler;
+    }
+    protected void AssignModelEuler(LocusMotion motion)
+    {
+        Vector3 newEuler = model.transform.eulerAngles;
+        newEuler += motion.addEulerAngle;
+        model.transform.eulerAngles = newEuler;
+    }
+
 
     public void Damage(float damage)
     {

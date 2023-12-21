@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Chara
   - Bullet
+  - SceneOperator
   layers:
   - Default
   - TransparentFX
