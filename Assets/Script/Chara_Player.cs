@@ -7,24 +7,24 @@ using UnityEngine.InputSystem;
 
 public class Chara_Player : BakureiChara
 {
-    public enum MotionState
-    {
-        Idle,
-        Move,
-
-    }
     [SerializeField] private BakuReiInputter inputter;
+    [SerializeField] private int currentMotionIndex;
+    [SerializeField] private List<LocusMotion> motionList = new List<LocusMotion>();
+    [SerializeField] private LocusMotion spawnMotion = new LocusMotion();
+
     [SerializeField] private MinMax slopeByZAxis = new MinMax();
 
     [SerializeField] private Easing slopeEasing = new Easing();
-    [field: SerializeField] ValueChecker<InputHorizontal> horizontalChecker { get; set; } = new ValueChecker<InputHorizontal>();
-    [field: SerializeField] ValueChecker<InputVertical> verticalChecker { get; set; } = new ValueChecker<InputVertical>();
-
+    public ValueChecker<InputHorizontal> horizontalChecker { get; set; } = new ValueChecker<InputHorizontal>();
+    public ValueChecker<InputVertical> verticalChecker { get; set; } = new ValueChecker<InputVertical>();
+    private Animator animator;
     protected override void Start()
     {
         base.Start();
         SetParentTag(Tags.Chara);
         inputter = GetComponent<BakuReiInputter>();
+
+        spawnAction += Materialization;
         aliveAction += AliveAction;
 
         slopeEasing.Initialize();
@@ -33,6 +33,10 @@ public class Chara_Player : BakureiChara
         horizontalChecker.Initialize(inputter.horizontal);
         horizontalChecker.changedAction += () => slopeEasing.Reset();
         verticalChecker.Initialize(inputter.vertical);
+
+        animator = model.GetComponent<Animator>();
+
+        motionList = new List<LocusMotion>() { spawnMotion };
     }
     protected override void Update()
     {
@@ -66,6 +70,27 @@ public class Chara_Player : BakureiChara
         }
     }
 
+    private void AssignMotionState()
+    {
+        switch (motionState)
+        {
+            case MotionState.Spawn:
+                break;
+
+            case MotionState.Run:
+                break;
+
+            case MotionState.Default:
+                break;
+        }
+
+        currentMotionIndex = (int)motionState;
+        //animator.SetInteger("MotionIndex", currentMotionIndex);
+        SolutionAssignModelRot(motionList[currentMotionIndex]);
+        //SolutionAssignRot(motionList[currentMotionIndex]);
+        SolutionAddPos(motionList[currentMotionIndex]);
+    }
+
     private void InputDirectionCheck()
     {
         horizontalChecker.Update(inputter.horizontal);
@@ -90,7 +115,6 @@ public class Chara_Player : BakureiChara
 
         
         model.transform.eulerAngles = Vector3.Lerp(AddFunction.GetNormalizedAngles(model.transform.eulerAngles, -180, 180), slope, slopeEasing.evaluteValue);
-        
     }
 
     public void RigorOperator()

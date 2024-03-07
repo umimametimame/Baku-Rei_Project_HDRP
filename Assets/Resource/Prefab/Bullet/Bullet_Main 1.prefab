@@ -205,6 +205,7 @@ MonoBehaviour:
       <value>k__BackingField: 0
       <increseType>k__BackingField: 0
       reversalIncrese: 0
+    <ratio>k__BackingField: 0
   moveVelocity:
     <entity>k__BackingField: {x: 0, y: 0, z: 0}
     <plan>k__BackingField: {x: 0, y: 0, z: 0}
@@ -215,6 +216,7 @@ MonoBehaviour:
       <value>k__BackingField: 0
       <increseType>k__BackingField: 0
       reversalIncrese: 0
+    <ratio>k__BackingField: 0
   invincible:
     <active>k__BackingField: 0
     <interval>k__BackingField: 0
@@ -222,6 +224,7 @@ MonoBehaviour:
       <value>k__BackingField: 0
       <increseType>k__BackingField: 0
       reversalIncrese: 0
+    <ratio>k__BackingField: 0
   <lastAttacker>k__BackingField: {fileID: 0}
   model: {fileID: 5591037282437726241}
   <camp>k__BackingField:
@@ -268,14 +271,25 @@ MonoBehaviour:
   <rigor>k__BackingField: 0
   <hitBox>k__BackingField: []
   bulletLocus:
-    locus: {fileID: 11400000, guid: bd434c2644a513347a5b87ea87302837, type: 2}
-    <posEva>k__BackingField: {x: 0, y: 0, z: 0}
-    <rotEva>k__BackingField: {x: 0, y: 0, z: 0}
-    <modelRotEva>k__BackingField: {x: 0, y: 0, z: 0}
-    <currentTime>k__BackingField:
-      <value>k__BackingField: 0
-      <increseType>k__BackingField: 0
-      reversalIncrese: 0
+    traffic:
+      active: 0
+    motionLocus:
+      locus: {fileID: 11400000, guid: bd434c2644a513347a5b87ea87302837, type: 2}
+      <posEva>k__BackingField: {x: 0, y: 0, z: 0}
+      <rotEva>k__BackingField: {x: 0, y: 0, z: 0}
+      <modelRotEva>k__BackingField: {x: 0, y: 0, z: 0}
+      <currentTime>k__BackingField:
+        <value>k__BackingField: 0
+        <increseType>k__BackingField: 0
+        reversalIncrese: 0
+    motionTime:
+      <active>k__BackingField: 0
+      <interval>k__BackingField: 0
+      <time>k__BackingField:
+        <value>k__BackingField: 0
+        <increseType>k__BackingField: 0
+        reversalIncrese: 0
+      <ratio>k__BackingField: 0
   lifeTime:
     <active>k__BackingField: 0
     <interval>k__BackingField: 2
@@ -283,8 +297,10 @@ MonoBehaviour:
       <value>k__BackingField: 0
       <increseType>k__BackingField: 0
       reversalIncrese: 0
+    <ratio>k__BackingField: 0
   attackBox: {fileID: 8530383251128299942}
   penetrate: 0
+  inductionOver: 0
 --- !u!114 &6977118252669320113
 MonoBehaviour:
   m_ObjectHideFlags: 0

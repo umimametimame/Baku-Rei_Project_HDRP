@@ -7,17 +7,11 @@ using UnityEngine.XR;
 
 public class Chara_Enemy : BakureiChara
 {
-    public enum MotionState
-    {
-        Spawn,
-        Run,
-        Default,
-    }
     [SerializeField] private List<LocusMotion> motionList = new List<LocusMotion>();
-    [SerializeField] private MotionState motionState;       // motionList‚Ì‹^Ž—Index‚Æ‚µ‚Ä‚àˆµ‚¤
     [SerializeField] private LocusMotion spawnMotion = new LocusMotion();
     [SerializeField] private LocusMotion runMotion = new LocusMotion();
     [SerializeField] private List<LocusMotion> defaultMotionList = new List<LocusMotion>();
+    [SerializeField] private int currentMotionIndex;
     [SerializeField] private Vector3 motionVelocity;
     [SerializeField] private SmoothRotate smooth;
     protected override void Start()
@@ -27,6 +21,7 @@ public class Chara_Enemy : BakureiChara
 
         assignSpeed = speed.entity;
 
+        spawnAction += Materialization;
         spawnMotion.Initialize();
         spawnMotion.reachAction += ThinkNextMotion;
         spawnAction += spawnMotion.Launch;
@@ -53,33 +48,32 @@ public class Chara_Enemy : BakureiChara
 
     protected override void Update()
     {
-        base.Update();
         invincible.Update();
         spawnMotion.Update();
         runMotion.Update();
+        base.Update();
         moveVelocity.plan += motionVelocity;
     }
 
     private void AliveAction()
     {
-        int motionIndex = 0;
+        currentMotionIndex = 2;
         switch(motionState)
         {
+            case MotionState.Default:
+                break;
             case MotionState.Spawn:
                 break;
 
             case MotionState.Run:
                 break;
 
-            case MotionState.Default:
-                break;
         }
 
-        motionIndex += (int)motionState;
-
-        AssignMotionVelocity(motionList[motionIndex]);
-        AssignEulerAngle(motionList[motionIndex]);
-        AssignModelEuler(motionList[motionIndex]);
+        currentMotionIndex += (int)motionState;
+        SolutionAssignModelRot(motionList[currentMotionIndex]);
+        //SolutionAssignRot(motionList[currentMotionIndex]);
+        SolutionAddPos(motionList[currentMotionIndex]);
     }
 
     private void ThinkNextMotion()
@@ -95,14 +89,4 @@ public class Chara_Enemy : BakureiChara
 
 
 
-    private void ChangeMotion(MotionState nextState)
-    {
-        motionState = nextState;
-    }
-
-    private void DeathAction()
-    {
-        Destroy(transform.parent.gameObject);
-    }
 }
-

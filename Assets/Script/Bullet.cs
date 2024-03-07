@@ -7,7 +7,7 @@ using System;
 
 public class Bullet : BakureiChara
 {
-    [SerializeField] private LocusOperator bulletLocus;
+    [SerializeField] private LocusMotion bulletLocus;
     [SerializeField] private Interval lifeTime;
     [SerializeField] private MotionCollider attackBox;
     [SerializeField] private bool penetrate;
@@ -70,8 +70,8 @@ public class Bullet : BakureiChara
 
         if(lifeTime.interval > 0) { lifeTime.Update(); }
         
-        SolutionChangeRot();
-        SolutionAddPos();
+        SolutionAssignRot(bulletLocus);
+        SolutionAddPos(bulletLocus);
         
 
         bulletLocus.Update();
@@ -80,37 +80,6 @@ public class Bullet : BakureiChara
     public void DeathAction()
     {
         Destroy(transform.parent.gameObject);
-    }
-
-    /// <summary>
-    /// 弾の軌道(角度)を変更する
-    /// </summary>
-    /// <returns></returns>
-    public Vector3 SolutionChangeRot()
-    {
-        Vector3 newEuler = bulletLocus.rotEva;
-
-        transform.eulerAngles = newEuler;
-
-        return newEuler;
-    }
-
-    /// <summary>
-    /// 弾の軌道(ベクトル・速度)を変更する
-    /// </summary>
-    public void SolutionAddPos()
-    {
-
-        Vector3 surface = Vector3.zero;
-        surface.x = bulletLocus.posEva.x;
-        surface.z = bulletLocus.posEva.z;
-
-        Vector3 newVelo = surface.normalized;   // Y軸以外で正規化
-
-        newVelo.y = bulletLocus.posEva.y;       // Y軸のイージングを付与
-        newVelo = transform.rotation * newVelo; // 向いている方向に進む
-
-        AddAssignedMoveVelocity(newVelo);
     }
 
 
