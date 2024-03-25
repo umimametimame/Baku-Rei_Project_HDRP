@@ -13,6 +13,7 @@ public class SceneOperator_GameScene : SceneOperator
     [SerializeField] private Instancer playerInstancer = new Instancer();
     [field: SerializeField] public Camera mainCamera { get; private set; }
     [field: SerializeField] public Transform scrollOffset { get; private set; }
+    [field: SerializeField] public ProjectionRangeManager projectionRange { get; private set; }
     [field: SerializeField] public List<BakureiChara> homingTargets { get; private set; } = new List<BakureiChara>();
     protected override void Awake()
     {
@@ -40,6 +41,7 @@ public class SceneOperator_GameScene : SceneOperator
         loaderManager = GetComponent<LoaderManager>();
         playerInstancer.Initialize();
         playerInstancer.Instance();
+        playerInstancer.lastObj.transform.position = scrollOffset.position;
     }
     protected override void Update()
     {

@@ -6,35 +6,39 @@ using UnityEngine.SceneManagement;
 public class ProjectionRangeManager : MonoBehaviour
 {
     [SerializeField] private List<MoveWhileCameraInvisible> targets = new List<MoveWhileCameraInvisible>();
+    [SerializeField] private Loader loader;
     public bool finished;
-    public static ProjectionRangeManager instance;
+    [SerializeField] private Transform center;
+    [field: SerializeField, NonEditable] public Transform front { get; private set; }
+    [field: SerializeField, NonEditable] public Transform back { get; private set; }
+    [field: SerializeField, NonEditable] public Transform right { get; private set; }
+    [field: SerializeField, NonEditable] public Transform left { get; private set; }
 
     protected virtual void Awake()
     {
-        if (instance == null)
-        {
-            instance = (ProjectionRangeManager)FindObjectOfType(typeof(ProjectionRangeManager));
-            DontDestroyOnLoad(gameObject); // ’Ç‰Á
-        }
-        else Destroy(gameObject);
-
     }
 
     private void Start()
     {
         targets.AddRange(GetComponentsInChildren<MoveWhileCameraInvisible>());
 
+        loader.loadFunc += LoadFunc;
+
+        front = targets[0].transform;
+        back = targets[1].transform;
+        right = targets[2].transform;
+        left = targets[3].transform;
     }
 
     private void Update()
     {
         if(finished == false)
         {
-            finished = CheckLoaded();
+            finished = LoadFunc();
         }
     }
 
-    public bool CheckLoaded()
+    public bool LoadFunc()
     {
 
         for (int i = 0; i < targets.Count; ++i)
@@ -42,7 +46,16 @@ public class ProjectionRangeManager : MonoBehaviour
             if(targets[i].finished == false) { return false; }
         }
 
+
         return true;
     }
+    public float HorizontalLength
+    {
+        get
+        {
+            return Vector3.Distance(center.position, targets[0].transform.position);
+        }
+    }
+
 
 }

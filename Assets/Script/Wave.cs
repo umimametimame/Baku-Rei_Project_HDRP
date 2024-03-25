@@ -9,7 +9,7 @@ public class Wave : MonoBehaviour
     [SerializeField] private Interval interval = new Interval();    // SpawnFlag‚ªReachTime‚Ìê‡‚Ég—p
     [SerializeField] private Instancer charaInstancer = new Instancer();
     [field: SerializeField] public Chara instancedChara;
-    [field: SerializeField] public bool instanced { get; private set; }
+    [field: SerializeField, NonEditable] public bool instanced { get; private set; }
     [field: SerializeField] public Vector3 instanceOffset { get; set; }
     public void Start()
     {

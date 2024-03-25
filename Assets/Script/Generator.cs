@@ -12,8 +12,7 @@ public class Generator : MonoBehaviour
         Random,
     }
     [SerializeField] private BakureiChara body;
-    [SerializeField] private InputOtherScript inputter;
-    [SerializeField] private bool active;
+    [field: SerializeField, NonEditable] public bool active { get; set; }
     [SerializeField] private Instancer bullet;
     [SerializeField] private int objLimit;
     [SerializeField] private Interval rate;
@@ -53,7 +52,6 @@ public class Generator : MonoBehaviour
     }
     private void Update()
     {
-        active = inputter.inputBool;
         checker.Update(generateType);
         rate.Update();
         bullet.Update();

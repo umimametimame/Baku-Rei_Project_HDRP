@@ -7,10 +7,12 @@ using UnityEngine.InputSystem;
 
 public class Chara_Player : BakureiChara
 {
-    [SerializeField] private BakuReiInputter inputter;
+    [SerializeField, NonEditable] private BakuReiInputter inputter;
     [SerializeField] private int currentMotionIndex;
     [SerializeField] private List<LocusMotion> motionList = new List<LocusMotion>();
     [SerializeField] private LocusMotion spawnMotion = new LocusMotion();
+
+    [SerializeField, NonEditable] private SlotsManager slotsManager;
 
     [SerializeField] private MinMax slopeByZAxis = new MinMax();
 
@@ -37,6 +39,9 @@ public class Chara_Player : BakureiChara
         animator = model.GetComponent<Animator>();
 
         motionList = new List<LocusMotion>() { spawnMotion };
+
+        slotsManager = GetComponentInChildren<SlotsManager>();
+
     }
     protected override void Update()
     {
@@ -52,6 +57,7 @@ public class Chara_Player : BakureiChara
 
         slopeEasing.Update();
         inputter.AssignInputDirection();
+        InputSlotsUpdate();
         InputDirectionCheck();
         HorizontalSlopeObjUpdate();
     }
@@ -115,6 +121,19 @@ public class Chara_Player : BakureiChara
 
         
         model.transform.eulerAngles = Vector3.Lerp(AddFunction.GetNormalizedAngles(model.transform.eulerAngles, -180, 180), slope, slopeEasing.evaluteValue);
+    }
+
+    private void InputSlotsUpdate()
+    {
+        if (rigor == true) { return; }
+
+        for(int i = 0; i < slotsManager.slots.Count; ++i)
+        {
+            for(int j = 0; j < slotsManager.slots[i].generators.Count; ++j)
+            {
+                slotsManager.slots[i].generators[j].active = inputter.slotsDic[InputButtons.buttons[i]].inputting;
+            }
+        }
     }
 
     public void RigorOperator()

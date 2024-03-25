@@ -15,14 +15,35 @@ public class BakuReiInputter : InputOperator
 {
     [field: SerializeField, NonEditable] public InputVecOrFloat<float> shiftInput { get; private set; } = new InputVecOrFloat<float>();
     [field: SerializeField, NonEditable] public InputVecOrFloat<float> attack01Input { get; private set; } = new InputVecOrFloat<float>();
-
+    public Dictionary<string, InputVecOrFloat<float>> slotsDic { get; private set; } = new Dictionary<string, InputVecOrFloat<float>>();
+    [field: SerializeField, NonEditable] public List<InputVecOrFloat<float>> slotInputs { get; private set; } = new List<InputVecOrFloat<float>>();
     [field: SerializeField, NonEditable] public InputHorizontal horizontal { get; private set; }
     [field: SerializeField, NonEditable] public InputVertical vertical { get; private set; }
     public void Start()
     {
         SetList();
         vInputs.Add(moveInput);
+
+        for (int i = 0; i < InputButtons.buttons.Count; i++)
+        {
+            slotsDic.Add(InputButtons.buttons[i], new InputVecOrFloat<float>());
+            slotsDic[InputButtons.buttons[i]].Initialize();
+        }
+
+        slotInputs.Add(attack01Input);
+        slotInputs.Add(slotsDic[InputButtons.Attack01]);
+
         Initialize();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        for(int i = 0; i < slotsDic.Count; ++i)
+        {
+            Debug.Log(i);
+            slotsDic[InputButtons.buttons[i]].Update();
+        }
     }
 
 
@@ -64,6 +85,11 @@ public class BakuReiInputter : InputOperator
     public void OnAttack01(InputValue value)
     {
         attack01Input.entity = value.Get<float>();
+        slotsDic[InputButtons.Attack01].entity = value.Get<float>();
+    }
+    public void OnAttack02(InputValue value)
+    {
+        slotsDic[InputButtons.Attack02].entity = value.Get<float>();
     }
     #endregion
 
@@ -72,6 +98,7 @@ public class BakuReiInputter : InputOperator
     {
         get { return moveInput.inputting; }
     }
+
     #endregion
 }
 
@@ -87,39 +114,39 @@ public class BakuReiInputter : InputOperator
     [SerializeField] private BakuReiInputter inputter;
     [SerializeField] private InputType type;
 
-    public bool inputBool
-    {
-        get
-        {
-            switch (type)
-            {
-                case InputType.Shift:
-                    return inputter.shiftInput.inputting;
+    //public bool inputBool
+    //{
+    //    get
+    //    {
+    //        switch (type)
+    //        {
+    //            case InputType.Shift:
+    //                return inputter.shiftInput.inputting;
 
-                case InputType.Attack01:
-                    return inputter.attack01Input.inputting;
-                default:
-                    Debug.Log("InputëŒè€Ç™à·Ç¢Ç‹Ç∑");
-                    return false;
-            }
+    //            case InputType.Attack01:
+    //                return inputter.attack01Input.inputting;
+    //            default:
+    //                Debug.Log("InputëŒè€Ç™à·Ç¢Ç‹Ç∑");
+    //                return false;
+    //        }
 
-        }
-    }
+    //    }
+    //}
 
-    public Vector2 inputVec
-    {
-        get
-        {
-            switch (type)
-            {
-                case InputType.Move:
-                    return inputter.moveInput.plan;
-                default:
-                    Debug.Log("InputëŒè€Ç™à·Ç¢Ç‹Ç∑");
-                    return Vector2.zero;
-            }
-        }
-    }
+    //public Vector2 inputVec
+    //{
+    //    get
+    //    {
+    //        switch (type)
+    //        {
+    //            case InputType.Move:
+    //                return inputter.moveInput.plan;
+    //            default:
+    //                Debug.Log("InputëŒè€Ç™à·Ç¢Ç‹Ç∑");
+    //                return Vector2.zero;
+    //        }
+    //    }
+    //}
 }
 
 #if UNITY_EDITOR
@@ -159,3 +186,13 @@ public class InputOtherDrawer : MyPropertyDrawer
     }
 }
 #endif
+
+
+public static class InputButtons
+{
+    public static string Attack01 = nameof(Attack01);
+    public static string Attack02 = nameof(Attack02);
+
+    public static List<string> buttons = new List<string>() { Attack01, Attack02 };
+
+}

@@ -671,8 +671,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   temporalAccumulationFactor:
-    m_OverrideState: 1
-    m_Value: 0.95
+    m_OverrideState: 0
+    m_Value: 1
   ghostingReduction:
     m_OverrideState: 0
     m_Value: 0

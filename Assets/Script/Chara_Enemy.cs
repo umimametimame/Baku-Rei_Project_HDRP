@@ -13,7 +13,6 @@ public class Chara_Enemy : BakureiChara
     [SerializeField] private List<LocusMotion> defaultMotionList = new List<LocusMotion>();
     [SerializeField] private int currentMotionIndex;
     [SerializeField] private Vector3 motionVelocity;
-    [SerializeField] private SmoothRotate smooth;
     protected override void Start()
     {
         base.Start();
