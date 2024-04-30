@@ -21,17 +21,18 @@ public class BakuReiInputter : InputOperator
     [field: SerializeField, NonEditable] public InputVertical vertical { get; private set; }
     public void Start()
     {
-        SetList();
+        SetInputsList();
         vInputs.Add(moveInput);
 
         for (int i = 0; i < InputButtons.buttons.Count; i++)
         {
-            slotsDic.Add(InputButtons.buttons[i], new InputVecOrFloat<float>());
-            slotsDic[InputButtons.buttons[i]].Initialize();
+            InputVecOrFloat<float> newInput = new InputVecOrFloat<float>();
+            newInput.Initialize();
+
+            slotsDic.Add(InputButtons.buttons[i], newInput);
+            slotInputs.Add(slotsDic[InputButtons.buttons[i]]);
         }
 
-        slotInputs.Add(attack01Input);
-        slotInputs.Add(slotsDic[InputButtons.Attack01]);
 
         Initialize();
     }
@@ -39,10 +40,10 @@ public class BakuReiInputter : InputOperator
     protected override void Update()
     {
         base.Update();
-        for(int i = 0; i < slotsDic.Count; ++i)
+        for(int i = 0; i < slotInputs.Count; ++i)
         {
-            Debug.Log(i);
-            slotsDic[InputButtons.buttons[i]].Update();
+            slotInputs[i].Update();
+            Debug.Log(slotInputs[i].floatRange);
         }
     }
 
@@ -84,7 +85,6 @@ public class BakuReiInputter : InputOperator
     }
     public void OnAttack01(InputValue value)
     {
-        attack01Input.entity = value.Get<float>();
         slotsDic[InputButtons.Attack01].entity = value.Get<float>();
     }
     public void OnAttack02(InputValue value)

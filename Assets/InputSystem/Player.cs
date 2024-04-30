@@ -53,6 +53,15 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Attack02"",
+                    ""type"": ""Value"",
+                    ""id"": ""f1c68167-164e-4d48-b5f9-21874c3fb7b4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -165,6 +174,28 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""action"": ""Attack01"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6890c7f-93b6-4ccc-9054-f875a124da7d"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""Attack02"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""caa87395-1414-41b0-aa4a-366ba488c605"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keybord"",
+                    ""action"": ""Attack02"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -199,6 +230,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
         m_Main_Move = m_Main.FindAction("Move", throwIfNotFound: true);
         m_Main_Shift = m_Main.FindAction("Shift", throwIfNotFound: true);
         m_Main_Attack01 = m_Main.FindAction("Attack01", throwIfNotFound: true);
+        m_Main_Attack02 = m_Main.FindAction("Attack02", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -263,6 +295,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
     private readonly InputAction m_Main_Move;
     private readonly InputAction m_Main_Shift;
     private readonly InputAction m_Main_Attack01;
+    private readonly InputAction m_Main_Attack02;
     public struct MainActions
     {
         private @Player m_Wrapper;
@@ -270,6 +303,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Main_Move;
         public InputAction @Shift => m_Wrapper.m_Main_Shift;
         public InputAction @Attack01 => m_Wrapper.m_Main_Attack01;
+        public InputAction @Attack02 => m_Wrapper.m_Main_Attack02;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -288,6 +322,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Attack01.started += instance.OnAttack01;
             @Attack01.performed += instance.OnAttack01;
             @Attack01.canceled += instance.OnAttack01;
+            @Attack02.started += instance.OnAttack02;
+            @Attack02.performed += instance.OnAttack02;
+            @Attack02.canceled += instance.OnAttack02;
         }
 
         private void UnregisterCallbacks(IMainActions instance)
@@ -301,6 +338,9 @@ public partial class @Player: IInputActionCollection2, IDisposable
             @Attack01.started -= instance.OnAttack01;
             @Attack01.performed -= instance.OnAttack01;
             @Attack01.canceled -= instance.OnAttack01;
+            @Attack02.started -= instance.OnAttack02;
+            @Attack02.performed -= instance.OnAttack02;
+            @Attack02.canceled -= instance.OnAttack02;
         }
 
         public void RemoveCallbacks(IMainActions instance)
@@ -341,5 +381,6 @@ public partial class @Player: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnShift(InputAction.CallbackContext context);
         void OnAttack01(InputAction.CallbackContext context);
+        void OnAttack02(InputAction.CallbackContext context);
     }
 }
